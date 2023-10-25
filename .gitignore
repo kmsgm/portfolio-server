@@ -1,0 +1,8 @@
+### Django ###
+*.log
+*.pot
+*.pyc
+__pycache__/
+backend/settings.py
+db.sqlite3
+backend/media

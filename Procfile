@@ -1,0 +1,1 @@
+web: gunicorn minseo-portfolio.wsgi --log-file -
