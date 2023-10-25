@@ -3,6 +3,4 @@
 *.pot
 *.pyc
 __pycache__/
-backend/media
-backend/settings.py
 .env
