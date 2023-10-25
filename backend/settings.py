@@ -131,12 +131,12 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 CORS_ORIGIN_WHITELIST = [
     "http://localhost:3000",
-    "https://portfolio-web-khaki.vercel.app/",
+    "https://portfolio-web-khaki.vercel.app",
 ]
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
-    "https://portfolio-web-khaki.vercel.app/",
+    "https://portfolio-web-khaki.vercel.app",
 ]
 
 
