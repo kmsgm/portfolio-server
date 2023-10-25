@@ -1,12 +1,7 @@
-import json
 from django.http import JsonResponse
-from rest_framework import viewsets
-from django.shortcuts import render
 from rest_framework.decorators import api_view
-from rest_framework.response import Response
-from django.core.serializers import serialize
 from django.http import HttpResponseNotAllowed, JsonResponse
-from .models import Home, About, Project, Image
+from .models import Home, About, Project
 
 
 @api_view(["GET"])
@@ -29,7 +24,6 @@ def about_info(request):
         about = About.objects.get(title="About Me")
         response_dict = {
             "description": about.description,
-            "image": json.dumps(str(about.image)),
         }
         return JsonResponse(response_dict, safe=False)
     else:
@@ -39,26 +33,9 @@ def about_info(request):
 @api_view(["GET"])
 def projects_list(request):
     if request.method == "GET":
-        projects = Project.objects.all()
-        projects_with_images = []
+        projects = [project for project in Project.objects.all().values()]
 
-        for project in projects:
-            images = project.image_set.all()
-            projects_with_images.append(
-                {
-                    "id": project.id,
-                    "category": project.category,
-                    "title": project.title,
-                    "period": project.period,
-                    "description": project.description,
-                    "stack": project.stack,
-                    "images": [
-                        {"id": image.id, "url": image.image.url} for image in images
-                    ],
-                }
-            )
-
-        return JsonResponse(projects_with_images, safe=False)
+        return JsonResponse(projects, safe=False)
     else:
         return HttpResponseNotAllowed(["GET"])
 
@@ -66,24 +43,8 @@ def projects_list(request):
 @api_view(["GET"])
 def filtered_projects_list(request, category):
     if request.method == "GET":
-        projects = Project.objects.filter(category__iexact=category)
-        projects_with_images = []
+        filtered_projects = [project for project in Project.objects.filter(category__iexact=category).values()]
 
-        for project in projects:
-            images = project.image_set.all()
-            projects_with_images.append(
-                {
-                    "id": project.id,
-                    "category": project.category,
-                    "title": project.title,
-                    "period": project.period,
-                    "description": project.description,
-                    "stack": project.stack,
-                    "images": [
-                        {"id": image.id, "url": image.image.url} for image in images
-                    ],
-                }
-            )
-        return JsonResponse(projects_with_images, safe=False)
+        return JsonResponse(filtered_projects, safe=False)
     else:
         return HttpResponseNotAllowed(["GET"])

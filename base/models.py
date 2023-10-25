@@ -35,7 +35,6 @@ class About(models.Model):
 
     title = models.CharField(max_length=100, blank=True)
     description = models.CharField(max_length=1000, blank=True)
-    image = models.ImageField(upload_to="about/", blank=True)
 
     def __str__(self):
         return self.title
@@ -51,6 +50,7 @@ class Project(models.Model):
         period (str): period of Projects.
         description (str): description of Projects.
         stack (str): stack of Projects.
+        image_tag (str): image tag for Projects images.
     """
 
     category = models.CharField(max_length=10, blank=True)
@@ -58,19 +58,7 @@ class Project(models.Model):
     period = models.CharField(max_length=100, blank=True)
     description = models.CharField(max_length=1000, blank=True)
     stack = models.CharField(max_length=100, blank=True)
+    image_tag = models.CharField(max_length=10, blank=True)
 
     def __str__(self):
         return self.title
-
-
-class Image(models.Model):
-    """
-    Image Model
-
-        # Fields
-        img (img): image
-        tag (str): tag for porjects images.
-    """
-
-    project = models.ForeignKey(Project, on_delete=models.CASCADE, null=True)
-    image = models.ImageField(upload_to="images/", blank=True)
