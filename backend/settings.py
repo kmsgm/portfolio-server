@@ -139,6 +139,7 @@ CORS_ALLOWED_ORIGINS = [
     "https://portfolio-web-khaki.vercel.app",
 ]
 
+CORS_ALLOW_CREDENTIALS = True
 
 STATIC_URL = "/static/"
 
