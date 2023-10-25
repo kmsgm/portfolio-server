@@ -1,1 +1,1 @@
-web: gunicorn minseo-portfolio.wsgi --log-file -
+web: gunicorn backend.wsgi --log-file -
