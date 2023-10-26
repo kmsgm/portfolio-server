@@ -130,12 +130,16 @@ STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-CORS_ORIGIN_ALLOW_ALL = True
-
 CORS_ORIGIN_WHITELIST = [
     "http://localhost:3000",
+    "https://portfolio-web-kmsgm.vercel.app/",
+    "https://portfolio-web-khaki.vercel.app/",
+    "https://minseo-portfolio.shop",
 ]
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
+    "https://portfolio-web-kmsgm.vercel.app/",
+    "https://portfolio-web-khaki.vercel.app/",
+    "https://minseo-portfolio.shop",
 ]
